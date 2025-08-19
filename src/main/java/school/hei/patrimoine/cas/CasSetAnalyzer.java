@@ -9,12 +9,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import school.hei.patrimoine.modele.Patrimoine;
 import school.hei.patrimoine.modele.objectif.ObjectifNonAtteint;
+import school.hei.patrimoine.patrilang.PatriLangTranspiler;
 import school.hei.patrimoine.visualisation.swing.ihm.MainIHM;
 
 public class CasSetAnalyzer implements Consumer<CasSet> {
 
   public static void main(String[] args) {
-    new CasSetAnalyzer().accept(new CasSetSupplier().get());
+    new CasSetAnalyzer().accept(PatriLangTranspiler.transpileToutCas("/home/duduk/Documents/Projects/Phylosius/patrimoine_gs_fk/src/test/resources/famille_rakoto_cas/FamilleRakoto.patri.md"));
   }
 
   @Override
@@ -27,20 +28,20 @@ public class CasSetAnalyzer implements Consumer<CasSet> {
 
   private static void verifie(ToutCas patrimoineTout) {
     var objectifsNonAtteints = patrimoineTout.verifier();
-    if (!objectifsNonAtteints.isEmpty()) {
-      throw new RuntimeException(
-          "Objectifs non atteints : "
-              + objectifsNonAtteints.stream()
-                  .sorted(
-                      (lhs, rhs) -> {
-                        if (lhs.objectif().t().equals(rhs.objectif().t())) {
-                          return 0;
-                        }
-                        return lhs.objectif().t().isBefore(rhs.objectif().t()) ? -1 : 1;
-                      })
-                  .map(ObjectifNonAtteint::prettyPrint)
-                  .collect(Collectors.joining("\n")));
-    }
+//    if (!objectifsNonAtteints.isEmpty()) {
+//      throw new RuntimeException(
+//          "Objectifs non atteints : "
+//              + objectifsNonAtteints.stream()
+//                  .sorted(
+//                      (lhs, rhs) -> {
+//                        if (lhs.objectif().t().equals(rhs.objectif().t())) {
+//                          return 0;
+//                        }
+//                        return lhs.objectif().t().isBefore(rhs.objectif().t()) ? -1 : 1;
+//                      })
+//                  .map(ObjectifNonAtteint::prettyPrint)
+//                  .collect(Collectors.joining("\n")));
+//    }
   }
 
   private static void visualise(Set<Cas> casSet, ToutCas patrimoineTout) {

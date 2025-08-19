@@ -14,6 +14,7 @@ import java.util.function.BiFunction;
 import lombok.Builder;
 import lombok.Getter;
 import school.hei.patrimoine.modele.possession.Possession;
+import school.hei.patrimoine.patrilang.modele.variable.VariableType;
 import school.hei.patrimoine.patrilang.visitors.possession.*;
 import school.hei.patrimoine.patrilang.visitors.variable.VariableVisitor;
 
@@ -31,6 +32,8 @@ public class OperationVisitor
   private final RemboursementDetteVisitor remboursementDetteVisitor;
   private final GroupPossessionVisitor groupPossessionVisitor;
   private final OperationTemplateCallVisitor operationTemplateCallVisitor;
+  private final ValeurMarcheeVisitor valeurMarcheeVisitor;
+  private final VenteVisitor venteVisitor;
 
   @Override
   public Set<Possession> apply(List<OperationsContext> contexts, VariableVisitor variableVisitor) {
@@ -103,6 +106,14 @@ public class OperationVisitor
       variableVisitor.addToScope(
           nom, type, variableVisitor.apply(ctx.ligneVariableDeclaration().valeur).value());
       return Set.of();
+    }
+
+    if (nonNull(ctx.valeurMarchee())) {
+      return Set.of();
+    }
+
+    if (nonNull(ctx.vente())) {
+      return Set.of(variableVisitor.asPossession(ctx.vente().possessionAVendre));
     }
 
     throw new IllegalArgumentException("Opération inconnue");

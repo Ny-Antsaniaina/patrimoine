@@ -26,9 +26,13 @@
 * `abonnementWifi` Dates:ajd, sortir 40000Ar depuis Trésoreries:zetyPersonnel, jusqu'à date indéterminée tous les 15 du mois
 * `nourriture` Dates:ajd, sortir 12000Ar depuis Trésoreries:zetyLoyerMaison, jusqu'à date indéterminée tous les 1 du mois
 * `JIRAMA` Dates:ajd, sortir 100000Ar depuis Trésoreries:zetyLoyerMaison, jusqu'à date indéterminée tous les 5 du mois
+* `possedeStylo` Dates:ajd, posséder styloEnOr, valant 2000000Ar, se dépréciant annuellement de 2%
  
 ## SalaireMensuel, Dates:ajd, devise en Ar
 * `salaireMensuel` Dates:ajd, entrer 500000Ar vers Trésoreries:zetyPersonnel, jusqu'à date indéterminée tous les 31 du mois
+
+## VentePossession, Dates:ajd, devise en Ar
+* `venteNft` Dates:ajd, vente de Materiel:styloEnOr pour 3000000Ar vers Trésoreries:zetyPersonnel
 
 # Suivi
 * `nouvelObjectif` Le 02 du 02-2025, objectif de 2000000Ar pour Trésoreries:zetyPersonnel
